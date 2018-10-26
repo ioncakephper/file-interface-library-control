@@ -16,5 +16,35 @@ namespace FileInterface
         {
             InitializeComponent();
         }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenApplicationFile();
+        }
+
+        private void OpenApplicationFile()
+        {
+            fileInterface1.OpenApplicationFile();
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveAsApplicationFile();
+        }
+
+        private void SaveAsApplicationFile()
+        {
+            fileInterface1.SaveAsApplicationFile(true);
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewApplicationFile();
+        }
+
+        private void NewApplicationFile()
+        {
+            fileInterface1.NewApplicationFile();
+        }
     }
 }

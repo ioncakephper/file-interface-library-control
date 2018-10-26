@@ -1,9 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="FileInterfaceControlLibrary.FileInterface" Collapsed="true">
+  <Class Name="FileInterfaceControlLibrary.FileInterface">
     <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>BAAAAAAAACAAAAAAAACAQAACAAAAAAAAAAAAIAACAAA=</HashCode>
+      <HashCode>BBAIAAAQBSBAAAEAAACAQAgDIAAIAAAAAAAAAAAAAhA=</HashCode>
       <FileName>FileInterface.cs</FileName>
     </TypeIdentifier>
   </Class>

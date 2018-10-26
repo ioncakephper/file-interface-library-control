@@ -41,13 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangeEventArgs.cs" />
     <Compile Include="FileInterface.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="FileInterface.Designer.cs">
       <DependentUpon>FileInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileNewingEventArgs.cs" />
+    <Compile Include="FileSavingEventArgs.cs" />
+    <Compile Include="NewEventArgs.cs" />
+    <Compile Include="OpenEventArgs.cs" />
+    <Compile Include="OpeningEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaveEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FileInterface.resx">
