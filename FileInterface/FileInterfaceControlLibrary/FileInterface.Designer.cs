@@ -1,13 +1,13 @@
-﻿namespace FileInterface
+﻿namespace FileInterfaceControlLibrary
 {
-    partial class Form1
+    partial class FileInterface
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -28,24 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.fileInterface1 = new FileInterfaceControlLibrary.FileInterface(this.components);
-            this.SuspendLayout();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             // 
-            // Form1
+            // openFileDialog1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(470, 261);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.ResumeLayout(false);
+            this.openFileDialog1.FileName = "openFileDialog1";
 
         }
 
         #endregion
 
-        private FileInterfaceControlLibrary.FileInterface fileInterface1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
-
