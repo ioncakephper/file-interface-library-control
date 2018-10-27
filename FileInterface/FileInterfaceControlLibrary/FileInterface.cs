@@ -45,58 +45,73 @@ namespace FileInterfaceControlLibrary
         public event EventHandler AppFileNameChanged;
 
         /// <summary>
-        /// Defines the Change.
+        /// Defines the ContentChanged.
         /// </summary>
-        public event EventHandler<ChangeEventArgs> Change;
+        [Description("Occurs whenever the application checks whether the content changed.")]
+        public event EventHandler<ContentChangedEventArgs> ContentChanged;
 
         /// <summary>
         /// Defines the FileNewing.
         /// </summary>
+        [Description("Occurs whenever a new file is created, before the file is created and decides to create a new file.")]
         public event EventHandler<FileNewingEventArgs> FileNewing;
 
         /// <summary>
         /// Defines the FileNewed.
         /// </summary>
+        [Description("Occurs whenever a new file is created, after the file is created.")]
         public event EventHandler FileNewed;
 
         /// <summary>
         /// Defines the New.
-        /// </summary>
+        /// </summary> 
+        [Description("Occurs whenever a new file is created.")]
         public event EventHandler<NewEventArgs> New;
 
         /// <summary>
         /// Defines the FileOpening.
         /// </summary>
+        /// 
+        [Description("Occurs whenever a file is opened, before the file is opened and decides to open a file.")]
         public event EventHandler<OpeningEventArgs> FileOpening;
 
         /// <summary>
         /// Defines the FileOpened.
         /// </summary>
+        /// 
+        [Description("Occurs whenever a file is opened, after the file is opened.")]
         public event EventHandler FileOpened;
 
         /// <summary>
         /// Defines the FileSaved.
         /// </summary>
+        [Description("Occurs whenever a file is saved, after the file is saved.")]
         public event EventHandler FileSaved;
 
         /// <summary>
         /// Defines the FileSaving.
         /// </summary>
+        /// 
+        [Description("Occurs whenever a file is saved, before the file is saved and decides to save a file.")]
         public event EventHandler<FileSavingEventArgs> FileSaving;
 
         /// <summary>
         /// Defines the Open.
-        /// </summary>
+        /// </summary> 
+        [Description("Occurs whenever a file is opened.")]
         public event EventHandler<OpenEventArgs> Open;
 
         /// <summary>
         /// Defines the Save.
         /// </summary>
+        [Description("Occurs whenever a file is saved.")]
         public event EventHandler<SaveEventArgs> Save;
 
         /// <summary>
         /// Gets or sets the AppFileName.
         /// </summary>
+        [Browsable(true)]
+        [Description("The path to application file")]
         public string AppFileName
         {
             get
@@ -114,6 +129,8 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// Gets or sets the New File Generator. 
         /// </summary>
+        [Browsable(true)]
+        [Description("The generator for a new application filename")]
         public NewFileGenerator NewFileGenerator
         {
             get
@@ -171,7 +188,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The NewApplicationFile.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if new application file is created, false otherwise.</returns>
         public bool NewApplicationFile()
         {
             if (IsContentChanged())
@@ -199,7 +216,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OpenApplicationFile.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if application file is opened, false otherwise.</returns>
         public bool OpenApplicationFile()
         {
             string fileName = GetOpenFileName();
@@ -228,7 +245,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The SaveApplicationFile.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if application file saved, false otherwise.</returns>
         public bool SaveApplicationFile()
         {
             return SaveAsApplicationFile();
@@ -237,7 +254,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The SaveAsApplicationFile.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if application file is saved with a different name, false otherwise.</returns>
         public bool SaveAsApplicationFile()
         {
             return SaveAsApplicationFile(false);
@@ -246,24 +263,26 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The SaveAsApplicationFile.
         /// </summary>
-        /// <param name="askFileName"></param>
-        /// <returns></returns>
+        /// <param name="askFileName">Indicates whether it will ask for a filename.</param>
+        /// <returns>True if application file is saved with a different name, false otherwise.</returns>
         public bool SaveAsApplicationFile(bool askFileName)
         {
+            string fileName = AppFileName;
             if (askFileName || string.IsNullOrEmpty(AppFileName))
             {
-                string fileName = GetSaveFileName(AppFileName);
-                if (!string.IsNullOrEmpty(fileName))
+                fileName = GetSaveFileName(AppFileName);
+                if (string.IsNullOrEmpty(fileName))
                 {
-                    if (AllowSaveFile())
-                    {
-                        if (SaveFile(fileName))
-                        {
-                            AppFileName = fileName;
-                            OnFileSaved(new EventArgs());
-                            return true;
-                        }
-                    }
+                    return false;
+                }
+            }
+            if (AllowSaveFile())
+            {
+                if (SaveFile(fileName))
+                {
+                    AppFileName = fileName;
+                    OnFileSaved(new EventArgs());
+                    return true;
                 }
             }
 
@@ -273,7 +292,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnFileNewed.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The event argument.</param>
         protected virtual void OnFileNewed(EventArgs e)
         {
             FileNewed?.Invoke(this, e);
@@ -282,7 +301,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnNew.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The new event args.</param>
         protected virtual void OnNew(NewEventArgs e)
         {
             New?.Invoke(this, e);
@@ -291,7 +310,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnFileOpened.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The event args.</param>
         protected virtual void OnFileOpened(EventArgs e)
         {
             FileOpened?.Invoke(this, e);
@@ -300,7 +319,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnOpen.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The open event args.</param>
         protected virtual void OnOpen(OpenEventArgs e)
         {
             Open?.Invoke(this, e);
@@ -309,7 +328,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnFileOpening.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The opening event args.</param>
         protected virtual void OnFileOpening(OpeningEventArgs e)
         {
             FileOpening?.Invoke(this, e);
@@ -318,16 +337,16 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnChange.
         /// </summary>
-        /// <param name="e"></param>
-        protected virtual void OnChange(ChangeEventArgs e)
+        /// <param name="e">The content changed event args.</param>
+        protected virtual void OnChange(ContentChangedEventArgs e)
         {
-            Change?.Invoke(this, e);
+            ContentChanged?.Invoke(this, e);
         }
 
         /// <summary>
         /// The OnFileSaved.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The event arguments.</param>
         protected virtual void OnFileSaved(EventArgs e)
         {
             FileSaved?.Invoke(this, e);
@@ -336,7 +355,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnSave.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The save event arguments.</param>
         protected virtual void OnSave(SaveEventArgs e)
         {
             Save?.Invoke(this, e);
@@ -345,7 +364,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnFileSaving.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The file saving event arguments.</param>
         protected virtual void OnFileSaving(FileSavingEventArgs e)
         {
             FileSaving?.Invoke(this, e);
@@ -354,8 +373,8 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The NewFile.
         /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
+        /// <param name="fileName">The path to file to create.</param>
+        /// <returns>True if the file is created, false otherwise.</returns>
         private bool NewFile(string fileName)
         {
             var e = new NewEventArgs() { FileName = fileName, Failed = false };
@@ -366,7 +385,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The NewFileName.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Path to new application file.</returns>
         private string NewFileName()
         {
             return NewFileGenerator.Generate();
@@ -375,7 +394,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The AllowNewFile.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if a new file is allowed, false otherwise.</returns>
         private bool AllowNewFile()
         {
             var e = new FileNewingEventArgs() { Cancel = false };
@@ -386,7 +405,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnFileNewing.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The file newing event args.</param>
         private void OnFileNewing(FileNewingEventArgs e)
         {
             FileNewing?.Invoke(this, e);
@@ -396,7 +415,7 @@ namespace FileInterfaceControlLibrary
         /// The OpenFile.
         /// </summary>
         /// <param name="fileName"></param>
-        /// <returns></returns>
+        /// <returns>True if file is opened, false otherwise.</returns>
         private bool OpenFile(string fileName)
         {
             var e = new OpenEventArgs() { FileName = fileName, Failed = false };
@@ -407,7 +426,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The AllowOpenFile.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if opening a file is allowed, false otherwise.</returns>
         private bool AllowOpenFile()
         {
             var e = new OpeningEventArgs() { Cancel = false };
@@ -418,7 +437,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The GetOpenFileName.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Path of the file to open or empty string.</returns>
         private string GetOpenFileName()
         {
             AppOpenFileDialog.FileName = string.Empty;
@@ -434,10 +453,10 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The IsContentChanged.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if content changes were detected, false otherwise.</returns>
         private bool IsContentChanged()
         {
-            var e = new ChangeEventArgs() { Changed = false };
+            var e = new ContentChangedEventArgs() { Changed = false };
             OnChange(e);
             return e.Changed;
         }
@@ -446,7 +465,7 @@ namespace FileInterfaceControlLibrary
         /// The SaveFile.
         /// </summary>
         /// <param name="fileName"></param>
-        /// <returns></returns>
+        /// <returns>True if file was saved, false otherwise.</returns>
         private bool SaveFile(string fileName)
         {
             var e = new SaveEventArgs() { FileName = fileName, Failed = false };
@@ -457,7 +476,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The AllowSaveFile.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if saving the file is allowed, false otherwise.</returns>
         private bool AllowSaveFile()
         {
             var e = new FileSavingEventArgs() { Cancel = false };
@@ -468,11 +487,12 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The GetSaveFileName.
         /// </summary>
-        /// <param name="appFileName"></param>
-        /// <returns></returns>
+        /// <param name="appFileName">Path to application filename.</param>
+        /// <returns>Path of the file to create or empty string.</returns>
         private string GetSaveFileName(string appFileName)
         {
             AppSaveFileDialog.FileName = appFileName;
+            AppSaveFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName(appFileName);
             var result = AppSaveFileDialog.ShowDialog();
             if (result.Equals(DialogResult.OK))
             {

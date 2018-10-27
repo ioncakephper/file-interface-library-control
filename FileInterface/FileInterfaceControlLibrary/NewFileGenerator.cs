@@ -17,12 +17,12 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// Defines the rootName.
         /// </summary>
-        private string rootName = "Application";
+        private string rootName;
 
         /// <summary>
         /// Defines the extension.
         /// </summary>
-        private string extension = ".txt";
+        private string extension;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NewFileGenerator"/> class.
@@ -46,6 +46,9 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// Gets or sets the RootName.
         /// </summary>
+        /// 
+        [Description("The root name of application filename.")]
+        [DefaultValue("Application")]
         public string RootName
         {
             get
@@ -62,6 +65,9 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// Gets or sets the Extension.
         /// </summary>
+        /// 
+        [Description("The file extension for generated filename")]
+        [DefaultValue("txt")]
         public string Extension
         {
             get
@@ -82,22 +88,25 @@ namespace FileInterfaceControlLibrary
         public string Generate()
         {
             int i = 1;
-            while (System.IO.File.Exists(ProposedFileName(i)))
+            string fileName = ProposedFileName(i);
+            while (System.IO.File.Exists(fileName))
             {
                 i++;
+                fileName = ProposedFileName(i);
             }
-            return ProposedFileName(i);
+            return fileName;
         }
 
         /// <summary>
         /// The ProposedFileName.
         /// </summary>
-        /// <param name="v">The v<see cref="int"/>.</param>
+        /// <param name="v">The <see cref="int"/> suffix of application filename.</param>
         /// <returns>The <see cref="string"/>.</returns>
         private string ProposedFileName(int v)
         {
             var currentFolder = System.IO.Directory.GetCurrentDirectory();
-            return string.Format(@"{0}\{1}{2}{3}", currentFolder, RootName, v.ToString(), Extension);
+            var fileExtension = (!string.IsNullOrEmpty(Extension)) ? "." + Extension : Extension;
+            return string.Format(@"{0}\{1}{2}{3}", currentFolder, RootName, v.ToString(), fileExtension);
         }
     }
 }

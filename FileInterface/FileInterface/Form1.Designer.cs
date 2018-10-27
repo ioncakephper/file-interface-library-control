@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            FileInterfaceControlLibrary.NewFileGenerator newFileGenerator1;
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +74,7 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.fileInterface1 = new FileInterfaceControlLibrary.FileInterface(this.components);
+            newFileGenerator1 = new FileInterfaceControlLibrary.NewFileGenerator(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -431,8 +433,14 @@
             // fileInterface1
             // 
             this.fileInterface1.AppFileName = "";
+            this.fileInterface1.NewFileGenerator = newFileGenerator1;
             this.fileInterface1.AppFileNameChanged += new System.EventHandler(this.fileInterface1_AppFileNameChanged);
-            this.fileInterface1.Change += new System.EventHandler<FileInterfaceControlLibrary.ChangeEventArgs>(this.fileInterface1_Change);
+            this.fileInterface1.ContentChanged += new System.EventHandler<FileInterfaceControlLibrary.ContentChangedEventArgs>(this.fileInterface1_Change);
+            // 
+            // newFileGenerator1
+            // 
+            newFileGenerator1.Extension = "xml";
+            newFileGenerator1.RootName = "Keywords";
             // 
             // Form1
             // 

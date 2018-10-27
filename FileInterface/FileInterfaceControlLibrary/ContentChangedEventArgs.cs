@@ -9,14 +9,14 @@ namespace FileInterfaceControlLibrary
     using System;
 
     /// <summary>
-    /// Defines the <see cref="ChangeEventArgs" />.
+    /// Defines the <see cref="ContentChangedEventArgs" />.
     /// </summary>
-    public class ChangeEventArgs : EventArgs
+    public class ContentChangedEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChangeEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="ContentChangedEventArgs"/> class.
         /// </summary>
-        public ChangeEventArgs()
+        public ContentChangedEventArgs()
         {
         }
 
