@@ -174,19 +174,24 @@ namespace FileInterfaceControlLibrary
         /// <returns></returns>
         public bool NewApplicationFile()
         {
-            if (SaveApplicationFile())
+            if (IsContentChanged())
             {
-                if (AllowNewFile())
+                if (!SaveApplicationFile())
                 {
-                    string fileName = NewFileName();
-                    if (NewFile(fileName))
-                    {
-                        AppFileName = fileName;
-                        OnFileNewed(new EventArgs());
-                        return true;
-                    }
+                    return false;
                 }
             }
+
+            if (AllowNewFile())
+            {
+                string fileName = NewFileName();
+                if (NewFile(fileName))
+                {
+                    AppFileName = fileName;
+                    OnFileNewed(new EventArgs());
+                    return true;
+                }
+            }           
 
             return false;
         }
@@ -223,7 +228,7 @@ namespace FileInterfaceControlLibrary
         /// <returns></returns>
         public bool SaveApplicationFile()
         {
-            return SaveAsApplicationFile(IsContentChanged());
+            return SaveAsApplicationFile();
         }
 
         /// <summary>

@@ -10,7 +10,7 @@ namespace FileInterfaceControlLibrary
     using System.ComponentModel;
 
     /// <summary>
-    /// Defines the <see cref="NewFileGenerator" />
+    /// Defines the <see cref="NewFileGenerator" />.
     /// </summary>
     public partial class NewFileGenerator : Component
     {
@@ -75,34 +75,29 @@ namespace FileInterfaceControlLibrary
             }
         }
 
+        /// <summary>
+        /// The Generate.
+        /// </summary>
+        /// <returns>The <see cref="string"/>.</returns>
         public string Generate()
         {
-            if (NotFound(ProposedFileName()))
+            int i = 1;
+            while (System.IO.File.Exists(ProposedFileName(i)))
             {
-                return ProposedFileName();
+                i++;
             }
-            int lastCount = GetGreatestCount(ProposedFileName());
-            return ProposedFileName(lastCount + 1);
+            return ProposedFileName(i);
         }
 
+        /// <summary>
+        /// The ProposedFileName.
+        /// </summary>
+        /// <param name="v">The v<see cref="int"/>.</param>
+        /// <returns>The <see cref="string"/>.</returns>
         private string ProposedFileName(int v)
         {
-            throw new NotImplementedException();
-        }
-
-        private int GetGreatestCount(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        private string ProposedFileName()
-        {
-            throw new NotImplementedException();
-        }
-
-        private bool NotFound(string p)
-        {
-            throw new NotImplementedException();
+            var currentFolder = System.IO.Directory.GetCurrentDirectory();
+            return string.Format(@"{0}\{1}{2}{3}", currentFolder, RootName, v.ToString(), Extension);
         }
     }
 }

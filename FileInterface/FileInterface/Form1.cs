@@ -76,5 +76,10 @@ namespace FileInterface
         {
             this.Text = System.IO.Path.GetFileName(fileInterface1.AppFileName);
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            fileInterface1.AppFileName = fileInterface1.NewFileGenerator.Generate();
+        }
     }
 }

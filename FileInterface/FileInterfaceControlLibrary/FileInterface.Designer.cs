@@ -36,6 +36,11 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // newFileGenerator1
+            // 
+            this.newFileGenerator1.Extension = ".txt";
+            this.newFileGenerator1.RootName = "Application";
 
         }
 
