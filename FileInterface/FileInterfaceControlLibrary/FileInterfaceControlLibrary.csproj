@@ -51,6 +51,12 @@
     <Compile Include="FileNewingEventArgs.cs" />
     <Compile Include="FileSavingEventArgs.cs" />
     <Compile Include="NewEventArgs.cs" />
+    <Compile Include="NewFileGenerator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NewFileGenerator.Designer.cs">
+      <DependentUpon>NewFileGenerator.cs</DependentUpon>
+    </Compile>
     <Compile Include="OpenEventArgs.cs" />
     <Compile Include="OpeningEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
