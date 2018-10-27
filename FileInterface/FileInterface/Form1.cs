@@ -81,5 +81,11 @@ namespace FileInterface
         {
             fileInterface1.AppFileName = fileInterface1.NewFileGenerator.Generate();
         }
+
+        private void fileInterface1_Change(object sender, FileInterfaceControlLibrary.ChangeEventArgs e)
+        {
+            var result = MessageBox.Show("Has the content changed?", "Content Change", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            e.Changed = result.Equals(DialogResult.Yes);
+        }
     }
 }

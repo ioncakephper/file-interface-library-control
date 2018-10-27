@@ -432,6 +432,7 @@
             // 
             this.fileInterface1.AppFileName = "";
             this.fileInterface1.AppFileNameChanged += new System.EventHandler(this.fileInterface1_AppFileNameChanged);
+            this.fileInterface1.Change += new System.EventHandler<FileInterfaceControlLibrary.ChangeEventArgs>(this.fileInterface1_Change);
             // 
             // Form1
             // 

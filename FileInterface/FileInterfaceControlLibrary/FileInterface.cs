@@ -205,20 +205,23 @@ namespace FileInterfaceControlLibrary
             string fileName = GetOpenFileName();
             if (!string.IsNullOrEmpty(fileName))
             {
-                if (SaveApplicationFile())
+                if (IsContentChanged())
                 {
-                    if (AllowOpenFile())
+                    if (!SaveApplicationFile())
                     {
-                        if (OpenFile(fileName))
-                        {
-                            AppFileName = fileName;
-                            OnFileOpened(new EventArgs());
-                            return true;
-                        }
+                        return false;
+                    }
+                }
+                if (AllowOpenFile())
+                {
+                    if (OpenFile(fileName))
+                    {
+                        AppFileName = fileName;
+                        OnFileOpened(new EventArgs());
+                        return true;
                     }
                 }
             }
-
             return false;
         }
 
@@ -247,7 +250,7 @@ namespace FileInterfaceControlLibrary
         /// <returns></returns>
         public bool SaveAsApplicationFile(bool askFileName)
         {
-            if (askFileName || IsContentChanged() || string.IsNullOrEmpty(AppFileName))
+            if (askFileName || string.IsNullOrEmpty(AppFileName))
             {
                 string fileName = GetSaveFileName(AppFileName);
                 if (!string.IsNullOrEmpty(fileName))
