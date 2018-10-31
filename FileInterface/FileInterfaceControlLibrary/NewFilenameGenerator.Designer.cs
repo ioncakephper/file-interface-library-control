@@ -1,6 +1,6 @@
 ﻿namespace FileInterfaceControlLibrary
 {
-    partial class FileInterface
+    partial class NewFilenameGenerator
     {
         /// <summary>
         /// Required designer variable.
@@ -28,27 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.newFileGenerator1 = new FileInterfaceControlLibrary.NewFilenameGenerator(this.components);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // newFileGenerator1
-            // 
-            this.newFileGenerator1.FileExtension = null;
-            this.newFileGenerator1.InitialDirectory = null;
-            this.newFileGenerator1.RootName = null;
-
+            components = new System.ComponentModel.Container();
         }
 
         #endregion
-
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private NewFilenameGenerator newFileGenerator1;
     }
 }

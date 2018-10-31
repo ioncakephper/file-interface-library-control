@@ -1,13 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="FileInterfaceControlLibrary.FileInterface">
+  <Class Name="FileInterfaceControlLibrary.FileInterface" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Properties" Collapsed="true" />
-    </Compartments>
     <TypeIdentifier>
-      <HashCode>BBAIAAAQBSBAAAEAAACAQAgDIAAIAAAAAAAAAAAAAhA=</HashCode>
+      <HashCode>FRAAAKERBaBBICWEAICEQBgLIEgYAUAAJiAAAAQAkBA=</HashCode>
       <FileName>FileInterface.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="NewFilenameGenerator" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="FileInterfaceControlLibrary.NewFilenameGenerator">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAACAAAAAAAACAAAACAAIAAAAIAEEAAEAAAAA=</HashCode>
+      <FileName>NewFilenameGenerator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

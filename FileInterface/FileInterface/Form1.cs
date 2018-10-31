@@ -46,5 +46,10 @@ namespace FileInterface
         {
             fileInterface1.NewApplicationFile();
         }
+
+        private void fileInterface1_AppFileNameChanged(object sender, EventArgs e)
+        {
+            Text = System.IO.Path.GetFileName(fileInterface1.AppFileName);
+        }
     }
 }
