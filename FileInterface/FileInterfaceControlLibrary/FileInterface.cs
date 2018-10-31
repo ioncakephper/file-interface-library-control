@@ -301,7 +301,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnNew.
         /// </summary>
-        /// <param name="e">The new event args.</param>
+        /// <param name="e">The new event arguments.</param>
         protected virtual void OnNew(NewEventArgs e)
         {
             New?.Invoke(this, e);
@@ -310,7 +310,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnFileOpened.
         /// </summary>
-        /// <param name="e">The event args.</param>
+        /// <param name="e">The event arguments.</param>
         protected virtual void OnFileOpened(EventArgs e)
         {
             FileOpened?.Invoke(this, e);
@@ -319,7 +319,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnOpen.
         /// </summary>
-        /// <param name="e">The open event args.</param>
+        /// <param name="e">The open event arguments.</param>
         protected virtual void OnOpen(OpenEventArgs e)
         {
             Open?.Invoke(this, e);
@@ -328,7 +328,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnFileOpening.
         /// </summary>
-        /// <param name="e">The opening event args.</param>
+        /// <param name="e">The opening event arguments.</param>
         protected virtual void OnFileOpening(OpeningEventArgs e)
         {
             FileOpening?.Invoke(this, e);
@@ -337,7 +337,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnChange.
         /// </summary>
-        /// <param name="e">The content changed event args.</param>
+        /// <param name="e">The content changed event arguments.</param>
         protected virtual void OnChange(ContentChangedEventArgs e)
         {
             ContentChanged?.Invoke(this, e);
@@ -405,7 +405,7 @@ namespace FileInterfaceControlLibrary
         /// <summary>
         /// The OnFileNewing.
         /// </summary>
-        /// <param name="e">The file newing event args.</param>
+        /// <param name="e">The file newing event arguments.</param>
         private void OnFileNewing(FileNewingEventArgs e)
         {
             FileNewing?.Invoke(this, e);
