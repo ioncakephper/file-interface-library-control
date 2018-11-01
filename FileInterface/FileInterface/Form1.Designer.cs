@@ -63,6 +63,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.fileInterface1 = new FileInterfaceControlLibrary.FileInterface(this.components);
             this.newFileGenerator1 = new FileInterfaceControlLibrary.NewFilenameGenerator(this.components);
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -316,11 +318,17 @@
             // 
             this.fileInterface1.AppFileName = "";
             this.fileInterface1.NewFilenameGenerator = this.newFileGenerator1;
+            this.fileInterface1.OpenFileDialog = this.openFileDialog1;
+            this.fileInterface1.SaveFileDialog = this.saveFileDialog1;
             this.fileInterface1.AppFileNameChanged += new System.EventHandler(this.fileInterface1_AppFileNameChanged);
             // 
             // newFileGenerator1
             // 
             this.newFileGenerator1.InitialDirectory = null;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -373,6 +381,8 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private FileInterfaceControlLibrary.FileInterface fileInterface1;
         private FileInterfaceControlLibrary.NewFilenameGenerator newFileGenerator1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
